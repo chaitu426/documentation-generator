@@ -27,7 +27,7 @@ React.useEffect(() => {
                     initial={{ filter: 'blur(20px)', opacity: 0 }}
                     animate={isInView ? { filter: 'blur(0px)', opacity: 1 } : {}}
                     transition={{ duration: 1.2 }}
-                     className='text-lg font-semibold'>Chaitanya abhade</motion.h1>
+                     className='text-lg font-semibold'>Chaitanya</motion.h1>
                      <AnimatePresence mode="wait">
                     <motion.h3
                     key={words[index]}
