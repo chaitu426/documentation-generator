@@ -141,19 +141,30 @@ Ensure that the generated Markdown is well-structured, easy to read, and formatt
       repocontent: stringify({ length: repocontent }),
       documentation,
     });
-  } catch (error: any) {
-    console.error('API Error:', {
-      message: error.message,
-      status: error.response?.status,
-      data: error.response?.data,
-    });
+  } catch (error: unknown) {
+    if (typeof error === 'object' && error !== null && 'message' in error) {
+      const err = error as { message: string; response?: { status?: number; data?: any } };
+  
+      console.error('API Error:', {
+        message: err.message,
+        status: err.response?.status,
+        data: err.response?.data,
+      });
+  
+      return NextResponse.json(
+        {
+          error: err.message || 'Failed to generate documentation',
+          details: err.response?.data || 'No additional details',
+        },
+        { status: err.response?.status || 500 }
+      );
+    }
+  
+    // If the error doesn't match expected structure, return a generic error
     return NextResponse.json(
-      {
-        error: error.message || 'Failed to generate documentation',
-        details: error.response?.data || 'No additional details',
-        
-      },
+      { error: 'Unknown error occurred' },
       { status: 500 }
     );
+  
   }
 }
