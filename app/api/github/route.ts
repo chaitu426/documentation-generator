@@ -20,7 +20,7 @@ export async function GET(request: Request) {
   if (!match) {
     return NextResponse.json({ error: 'Invalid GitHub URL' }, { status: 400 });
   }
-  var repocontent;
+  let repocontent;
   const [_, owner, repo] = match;
 
   try {

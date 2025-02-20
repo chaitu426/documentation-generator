@@ -73,7 +73,7 @@ export default function Home() {
         setError(data.error + (data.details ? `: ${JSON.stringify(data.details)}` : ""))
       }
     } catch (err) {
-      setError("An error occurred while fetching data.")
+      setError(`An error occurred while fetching data: ${err}`)
     } finally {
       setLoading(false)
       clearInterval(loadingInterval)
