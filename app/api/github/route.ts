@@ -143,7 +143,7 @@ Ensure that the generated Markdown is well-structured, easy to read, and formatt
     });
   } catch (error: unknown) {
     if (typeof error === 'object' && error !== null && 'message' in error) {
-      const err = error as { message: string; response?: { status?: number; data?: String } };
+      const err = error as { message: string; response?: { status?: number; data?: string } };
   
       console.error('API Error:', {
         message: err.message,
