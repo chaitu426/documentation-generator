@@ -3,8 +3,8 @@ import { Octokit } from '@octokit/rest';
 import axios from 'axios';
 import { stringify } from 'querystring';
 
-const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN || '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' });
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyCNHZ-tJMbWT7DQ-_yfzJ19atiBWOf0aqs'; // Replace with your key
+const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN || '' });
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || ''; // Replace with your key
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 
 
@@ -54,7 +54,7 @@ export async function GET(request: Request) {
         ? codeFiles.join('\n\n---\n\n').slice(0, 10000)
         : 'No code files found; generate a basic overview based on repository context.';
     console.log(`Code content length: ${codeContent.length} characters`);
-    console.log(`Code content: ${codeContent}`);
+    
     repocontent = codeContent.length;
 
     const prompt = `
