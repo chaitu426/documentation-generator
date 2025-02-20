@@ -21,7 +21,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'Invalid GitHub URL' }, { status: 400 });
   }
   let repocontent;
-  const [_, owner, repo] = match;
+  const [ owner, repo] = match;
 
   try {
     // Fetch repository contents recursively
